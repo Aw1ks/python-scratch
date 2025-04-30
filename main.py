@@ -1,6 +1,5 @@
 import random
 
-
 LETTER_SCORES = {
     "А": 1,
     "Б": 3,
@@ -47,10 +46,11 @@ def get_word_with_letter(letter):
         word = input(f'Введите слово на букву {letter}: ').upper()
         if word and word[0] == letter:
             return word
-        print(f'Слово начинаетс с буквы "{letter}". Попробуй еще раз!')
+        print(f'Слово начинается с буквы "{letter}". Попробуйте еще раз!')
 
 
 def calculate_score(word):
+    """Вычисляет сумму очков для слова на основе LETTER_SCORES."""
     all_scores = []
     for letter in word:
         scores = LETTER_SCORES.get(letter, 0)
@@ -60,26 +60,27 @@ def calculate_score(word):
 
 
 def main():
+    """Основная функция, управляющая игровым процессом."""
     letter = get_random_letter()
-    
+
     print(f'Начальная буква: "{letter}"')
-    
+
     print('Игрок 1')
     player_one_word = get_word_with_letter(letter)
-    
+
     print('Игрок 2')
     player_two_word = get_word_with_letter(letter)
-    
-    score_first_player = calculate_score(player_one_word)
-    score_second_player = calculate_score(player_two_word)
-    
-    print(f"Игрок 1 набрал {score_first_player} очков")
-    print(f"Игрок 2 набрал {score_second_player} очков")
-    
-    if score_first_player > score_second_player:
-        print(f'Победил игрок 1 со счетом: {score_first_player}.')
-    elif score_first_player < score_second_player:
-        print(f'Победил игрок 2 со счетом: {score_second_player}.')
+
+    player_one_score = calculate_score(player_one_word) 
+    player_two_score = calculate_score(player_two_word) 
+
+    print(f"Игрок 1 набрал {player_one_score} очков")
+    print(f"Игрок 2 набрал {player_two_score} очков")
+
+    if player_one_score > player_two_score:
+        print(f'Победил игрок 1 со счетом: {player_one_score}.')
+    elif player_one_score < player_two_score:
+        print(f'Победил игрок 2 со счетом: {player_two_score}.')
     else:
         print('Победила дружба!')
 
